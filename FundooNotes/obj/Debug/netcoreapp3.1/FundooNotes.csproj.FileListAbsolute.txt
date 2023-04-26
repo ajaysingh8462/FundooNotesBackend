@@ -100,3 +100,13 @@ C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\NLog.con
 C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\NLog.dll
 C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
 C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\Automatonymous.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\GreenPipes.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\MassTransit.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\MassTransit.AspNetCoreIntegration.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\MassTransit.ExtensionsDependencyInjectionIntegration.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\MassTransit.RabbitMqTransport.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\NewId.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\admin\source\repos\CFP 208\FundooNotes\bin\Debug\netcoreapp3.1\RabbitMQ.Client.dll

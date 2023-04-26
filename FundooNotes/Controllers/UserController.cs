@@ -17,6 +17,8 @@ namespace FundooNotes.Controllers
     {
         private readonly IUserBusiness userBusiness;
         private readonly ILogger<UserController> logger;
+        const string UserName = "UserName";
+        const string Emailid = "Emailid";
         public UserController(IUserBusiness userBusiness, ILogger<UserController> logger)
         {
             this.userBusiness = userBusiness;
@@ -28,9 +30,13 @@ namespace FundooNotes.Controllers
         {
             try
             {
+                HttpContext.Session.SetString(UserName, userRegistrationModel.FirstName);
+                HttpContext.Session.SetString(Emailid, userRegistrationModel.EmailId);
                 var result = userBusiness.UserRegistration(userRegistrationModel);
                 if (result != null)
                 {
+                    var Name = HttpContext.Session.GetString(UserName);
+                    var Email = HttpContext.Session.GetString(Emailid);
                     logger.LogInformation("User register suvccessfully");
                     return this.Ok(new ResponseModel<UserEntity> { Status = true, Message = "Register Successfull", Data = result });
                 }
@@ -51,14 +57,14 @@ namespace FundooNotes.Controllers
         {
             try
             {
-                
+                //UserRegistrationModel data = new UserRegistrationModel();
+
                 var result1 = userBusiness.loginAuthentication(userModel);
                 if (result1 != null)
                 {
 
-                    //SetSession(result1);
-                    //var Name = HttpContext.Session.GetString("UserName");
-                    //var userid = HttpContext.Session.GetInt32("Emailid");
+                    //SetSession(data);
+                    
                     logger.LogInformation("User login successfully");
                     return this.Ok(new ResponseModel<string> { Status = true, Message = "Log in successfull", Data = result1 });
                 }
@@ -75,10 +81,12 @@ namespace FundooNotes.Controllers
             }
 
         }
+        //[HttpGet("Session")]
         //public void SetSession(UserRegistrationModel userModel)
         //{
-        //    HttpContext.Session.SetString("UserName", userModel.FirstName + " " + userModel.LastName);
+        //    HttpContext.Session.SetString("UserName", userModel.FirstName);
         //    HttpContext.Session.SetString("Emailid", userModel.EmailId);
+
         //}
         [HttpPost]
         [Route("ForgetPassword")]

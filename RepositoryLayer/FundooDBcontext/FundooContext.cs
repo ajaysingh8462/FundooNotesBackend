@@ -16,5 +16,6 @@ namespace RepositoryLayer.FundooDBcontext
         public DbSet<NotesEntity> NotesTable { get; set; }
         public DbSet<LableEntity> LableTable { get; set; }
         public DbSet<CollabeEntity> CollabeTable { get; set; }
+        public DbSet<ReviewEntity> ReviewTable { get; set; }
     }
 }

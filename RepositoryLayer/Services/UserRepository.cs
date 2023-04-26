@@ -1,6 +1,7 @@
 ﻿using CommonLayer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using RepositoryLayer.Entity;
 using RepositoryLayer.FundooDBcontext;
 using RepositoryLayer.Interfaces;
@@ -135,6 +136,35 @@ namespace RepositoryLayer.Services
             {
                 var getUser = fundoocontext.UserTable.ToList();
                 return getUser;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public UserTicket GetTicketForPass(GetForgetPassword getForgetPassword, string token)
+        {
+            try
+            {
+                var user = fundoocontext.UserTable.Where(u => u.EmailId == getForgetPassword.EmailId).FirstOrDefault();
+
+                if (user != null)
+                {
+                    UserTicket ticket = new UserTicket
+                    {
+
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        emailId = user.EmailId,
+                        Token = token,
+                        issueAt = DateTime.Now
+
+                    };
+                    return ticket;  
+
+                }
+                else
+                    return null;
             }
             catch (Exception ex)
             {

@@ -78,6 +78,17 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
+        public UserTicket GetTicketForPass(GetForgetPassword getForgetPassword, string token)
+        {
+            try 
+            {
+                return userRepository.GetTicketForPass(getForgetPassword, token);
+            }
+            catch(Exception ex) 
+            {
+                throw ex;
+            }
+        }
 
     }
 }

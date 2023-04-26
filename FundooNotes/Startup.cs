@@ -1,5 +1,6 @@
 using BusinessLayer.Interfaces;
 using BusinessLayer.Services;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,10 +48,24 @@ namespace FundooNotes
             services.AddTransient<ILableBusinessLayer, LableBusinessLayer>();
             services.AddTransient<ICollabeRepository, CollabeRepository>();
             services.AddTransient<ICollabeBusiness, CollabeBusiness>();
-            //services.AddSession(o =>
-            //{
-            //    o.IdleTimeout = TimeSpan.FromMinutes(15);
-            //});
+            services.AddDistributedMemoryCache();
+            services.AddSession(o =>
+            {
+                o.IdleTimeout = TimeSpan.FromMinutes(15);
+            });
+            services.AddMassTransit(x =>
+            {
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.UseHealthCheck(provider);
+                    config.Host(new Uri("rabbitmq://localhost"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                }));
+            });
+            services.AddMassTransitHostedService();
             services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = "localhost:6379";
@@ -114,6 +129,7 @@ namespace FundooNotes
             
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -122,7 +138,7 @@ namespace FundooNotes
                 app.UseDeveloperExceptionPage();
             }
             app.UseAuthentication();
-            //app.UseSession(); 
+            app.UseSession();
             app.UseSwagger();
 
             // This middleware serves the Swagger documentation UI
